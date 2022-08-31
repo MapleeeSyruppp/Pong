@@ -1,3 +1,4 @@
+// canvas class
 class Board{
     constructor(element){
         this.canvas = element
