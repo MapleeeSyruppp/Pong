@@ -40,26 +40,29 @@ class Board{
             this.fillRect(this.canvas.width / 2 - 3, y, 6, height)
         }
     }
-    reset(score){
+    keepCenter(){
         let currentDate = Date.now()
+        const center = setInterval(() => {
+            const speed = 0.8
+            // Reset paddle position
+            paddle1.pos.x = 30
+            paddle1.pos.y = gameBoard.canvas.height / 2 - 30
+            paddle2.pos.x = gameBoard.canvas.width - 40
+            paddle2.pos.wy = gameBoard.canvas.height / 2 - 30
+            // Reset ball position
+            ball.pos.x = gameBoard.canvas.width / 2 - 5
+            ball.pos.y = gameBoard.canvas.height / 2 - 5
+            // Reset velocities
+            ball.velocity.x = Math.random() - 0.5 >= 0 ? -speed : speed
+            ball.velocity.y = Math.random() - 0.5 >= 0 ? -speed : speed
+            if(Date.now() >= currentDate + 1500){
+                clearInterval(center)
+            }
+        }, 1)
+    }
+    reset(score){
         if(score.p1 < gameBoard.score.p1 || score.p2 < gameBoard.score.p2){
-            const center = setInterval(() => {
-                const speed = 0.8
-                // Reset paddle position
-                paddle1.pos.x = 30
-                paddle1.pos.y = gameBoard.canvas.height / 2 - 30
-                paddle2.pos.x = gameBoard.canvas.width - 40
-                paddle2.pos.wy = gameBoard.canvas.height / 2 - 30
-                // Reset ball position
-                ball.pos.x = gameBoard.canvas.width / 2 - 5
-                ball.pos.y = gameBoard.canvas.height / 2 - 5
-                // Reset velocities
-                ball.velocity.x = Math.random() - 0.5 >= 0 ? -speed : speed
-                ball.velocity.y = Math.random() - 0.5 >= 0 ? -speed : speed
-                if(Date.now() >= currentDate + 2000){
-                    clearInterval(center)
-                }
-            }, 1)
+            this.keepCenter()
         }
         
     }
@@ -185,6 +188,7 @@ const paddle2 = new Paddle({x: gameBoard.canvas.width - 40, y: gameBoard.canvas.
 const ball = new Ball({x: gameBoard.canvas.width / 2 - 5, y: gameBoard.canvas.height / 2 - 5})
 
 // Draw
+gameBoard.keepCenter()
 function animate(){
     requestAnimationFrame(() => (animate()))
     gameBoard.fillStyle('black')
