@@ -102,7 +102,7 @@ class Paddle{
         }
         else if(this.pos.y + 60 >= gameBoard.canvas.height){
             this.velocity.y = 0
-            this.pos.y = 60
+            this.pos.y = gameBoard.canvas.height - this.height
         }
     }
     update(){
