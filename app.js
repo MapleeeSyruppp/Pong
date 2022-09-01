@@ -225,3 +225,28 @@ addEventListener('keydown',(ev)=>{
             break;
     }
 })
+
+addEventListener('keyup',(ev)=>{
+    switch(ev.key){
+        case 'w':
+            // Go up
+            paddle1.velocity.y = 0
+            paddle1.update()
+            break;
+        case 's':
+            // Go down
+            paddle1.velocity.y = 0
+            paddle1.update()
+            break;
+        case 'ArrowUp':
+            // Go up
+            paddle2.velocity.y = 0
+            paddle2.update()
+            break;
+        case 'ArrowDown':
+            // Go up
+            paddle2.velocity.y = 0
+            paddle2.update()
+            break;
+    }
+})
