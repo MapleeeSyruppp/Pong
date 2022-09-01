@@ -98,9 +98,11 @@ class Paddle{
     checkOutOfBounds(){
         if(this.pos.y <= 0){
             this.velocity.y = 0
+            this.pos.y = 0
         }
         else if(this.pos.y + 60 >= gameBoard.canvas.height){
             this.velocity.y = 0
+            this.pos.y = 60
         }
     }
     update(){
