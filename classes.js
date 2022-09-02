@@ -70,10 +70,10 @@ class Board{
             p1: gameBoard.score.p1,
             p2: gameBoard.score.p2
         }
-        if(ball.pos.x >= 489.5){
+        if(ball.pos.x >= 480){
             gameBoard.score.p1 += 1
         }
-        if(ball.pos.x <= 0.5){
+        if(ball.pos.x <= 10){
             gameBoard.score.p2 += 1
         }
         const currentDate = new Date()
@@ -162,14 +162,29 @@ class Ball{
         // Checks
         // Paddle 1 Check
         if(this.pos.x + this.velocity.x <= p1.rightSide && this.pos.y + this.velocity.y >= p1.topSide && this.pos.y + this.velocity.y <= p1.bottomSide){
-            this.velocity.x = -this.velocity.x
+            
+            // Angle Math
+            // var deltaX = this.pos.x - p1.rightSide;
+            // var deltaY = this.pos.y - paddle1.pos.y;
+            // var rad = Math.atan2(deltaY, deltaX);
+            // var deg = rad * (180 / Math.PI)
+            // console.log(`Degree: ${deg}`)
+
+            this.velocity.x = -(this.velocity.x - 0.15)
+            console.log(this.velocity.x)
         }
         // Paddle 2 Check
         if(this.pos.x + this.width + this.velocity.x >= p2.leftSide && this.pos.y + this.velocity.y >= p2.topSide && this.pos.y + this. velocity.y <= p2.bottomSide){
-            this.velocity.x = -this.velocity.x
+            this.velocity.x = -(this.velocity.x + 0.15)
+            console.log(this.velocity.x)
         }
     }
     update(){
+        const heading = Math.random(2 * Math.PI)
+        this.direction = {
+            x: Math.cos(heading),
+            y: Math.sin(heading)
+        }
         this.draw()
         this.checkBoundaryCollision()
         this.checkPaddleCollision()
