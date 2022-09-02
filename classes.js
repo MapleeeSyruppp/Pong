@@ -171,12 +171,10 @@ class Ball{
             // console.log(`Degree: ${deg}`)
 
             this.velocity.x = -(this.velocity.x - 0.15)
-            console.log(this.velocity.x)
         }
         // Paddle 2 Check
         if(this.pos.x + this.width + this.velocity.x >= p2.leftSide && this.pos.y + this.velocity.y >= p2.topSide && this.pos.y + this. velocity.y <= p2.bottomSide){
             this.velocity.x = -(this.velocity.x + 0.15)
-            console.log(this.velocity.x)
         }
     }
     update(){
